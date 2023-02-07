@@ -4,18 +4,27 @@ import java.awt.event.ActionListener;
 
 public class startPage implements ActionListener{
 
-    JFrame frame = new JFrame();
+    JFrame frame = new JFrame("Tic Tac Toe Main Menu");
     JButton startButton = new JButton("Start Game");
+    JButton exitButton = new JButton("Exit");
     JLabel startText = new JLabel("Tic Tac Toe");
 
     startPage(){
+
+        startText.setBounds(150, 50, 200, 40);
 
         startButton.setBounds(100, 160, 200, 40);
         startButton.setFocusable(false);
         startButton.addActionListener(this);
 
+        exitButton.setBounds(100, 260, 200, 40);
+        exitButton.setFocusable(false);
+        exitButton.addActionListener(this);
 
+
+        frame.add(startText);
         frame.add(startButton);
+        frame.add(exitButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,420);
@@ -29,6 +38,10 @@ public class startPage implements ActionListener{
 
         if(e.getSource() == startButton) {
             gameWindow newGame = new gameWindow();
+        }
+
+        if (e.getSource() == exitButton) {
+            System.exit(0);
         }
 
     }
