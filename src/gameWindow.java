@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class gameWindow implements ActionListener{
 
+    boolean gameOver = false;
+
     boolean xTurn = true;
 
     JButton[][] buttons = new JButton[3][3];
@@ -33,8 +35,46 @@ public class gameWindow implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton clickedButton = (JButton) e.getSource();
-        String text = xTurn ? "X" : "O";
+        String text = xTurn ? "X" : "0";
         clickedButton.setText(text);
         xTurn = !xTurn;
+        checkWin();
+    }
+
+    private void checkWin() {
+        for(int i = 0; i < 3; i++) {
+           if(checkRow(i) || checkColumn(i) || checkDiagonal1(i) || checkDiagonal2(i)) {
+               gameOver = true;
+               break;
+           }
+           if (gameOver == true) {
+               winWindow winW = new winWindow();
+           }
+        }
+    }
+
+    private boolean checkRow(int row) {
+        return buttons[row][0].getText() == buttons[row][1].getText() &&
+                buttons[row][1].getText() == buttons[row][2].getText() &&
+                buttons[row][0].getText() !=  " ";
+    }
+
+    private boolean checkColumn(int col) {
+        return buttons[0][col].getText() == buttons[1][col].getText() &&
+                buttons[1][col].getText() == buttons[2][col].getText() &&
+                buttons[0][col].getText() != " ";
+    }
+
+    private boolean checkDiagonal1(int dia1) {
+        return buttons[0][0].getText() == buttons[1][1].getText() &&
+                buttons[1][1].getText() == buttons[2][2].getText() &&
+                buttons[0][0].getText() != " ";
+    }
+
+    private boolean checkDiagonal2(int dia2) {
+        return buttons[0][2].getText() == buttons[1][1].getText() &&
+                buttons[1][1].getText() == buttons[2][0].getText() &&
+                buttons[0][2].getText() != " ";
     }
 }
+

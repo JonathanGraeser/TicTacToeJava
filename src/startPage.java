@@ -1,6 +1,7 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
+
 
 public class startPage implements ActionListener{
 
@@ -12,6 +13,7 @@ public class startPage implements ActionListener{
     startPage(){
 
         startText.setBounds(150, 50, 200, 40);
+        startText.setFont(new Font(null, Font.BOLD, 35));
 
         startButton.setBounds(100, 160, 200, 40);
         startButton.setFocusable(false);
